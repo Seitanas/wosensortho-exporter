@@ -29,7 +29,5 @@ func main() {
 	config.BTScanDuration = btScanDuration
 	config.BTScanInterval = btScanInterval
 	config.Device = device
-	log.Printf("%s\n", config.Config)
 	prometheus.Start(httpListenAddress)
-
 }
