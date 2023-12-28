@@ -38,7 +38,6 @@ func recordMetrics() {
 	go func() {
 		for {
 			btScan()
-			updateMetrics()
 			time.Sleep(config.BTScanInterval)
 		}
 	}()
