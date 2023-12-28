@@ -1,0 +1,12 @@
+{
+  "Sensors": {
+    "e11:11:11:00:bb:aa": {
+      "Labels": [
+        {
+          "Name": "location",
+          "Value": "outdoor"
+        }
+      ]
+    }
+  }
+}
