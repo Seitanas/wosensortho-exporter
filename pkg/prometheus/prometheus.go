@@ -29,7 +29,6 @@ func btScan() {
 	}
 	ble.SetDefaultDevice(d)
 	defer ble.Stop()
-	log.Printf("Scanning for %s...\n", config.BTScanDuration)
 	ctx := ble.WithSigHandler(context.WithTimeout(context.Background(), config.BTScanDuration))
 	chkErr(ble.Scan(ctx, true, btle.Handler, nil))
 }
@@ -116,7 +115,6 @@ func chkErr(err error) {
 	switch errors.Cause(err) {
 	case nil:
 	case context.DeadlineExceeded:
-		log.Printf("Done\n")
 	case context.Canceled:
 		log.Printf("Canceled\n")
 	default:
