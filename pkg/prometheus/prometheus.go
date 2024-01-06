@@ -88,34 +88,16 @@ func (collector *sensorCollector) Collect(ch chan<- prometheus.Metric) {
 		}
 		if len(data.ManufacturerData) > 0 {
 			desc = buildPromDesc("wosensortho_temperature", "Temperature reading", labels)
-			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, getTemperature(data.ManufacturerData))
+			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, data.Temperature)
 
 			desc = buildPromDesc("wosensortho_humidity", "Humidity reading", labels)
-			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, getHumidity(data.ManufacturerData))
+			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, data.Humidity)
 		}
 		if len(data.ServiceData) > 0 {
 			desc = buildPromDesc("wosensortho_battery", "Battery level", labels)
-			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, getBattery(data.ServiceData))
+			ch <- prometheus.MustNewConstMetric(desc, prometheus.GaugeValue, data.Battery)
 		}
 	}
-}
-
-func getTemperature(t []byte) float64 {
-	temperature := (float64(t[10]&0x0f)*0.1 + float64(t[11]&0x7f))
-	sign := 1
-	if (t[11] & 0x80) == 0 {
-		sign = -1
-	}
-	return temperature * float64(sign)
-}
-
-func getHumidity(h []byte) float64 {
-	humidity := float64(h[12] & 0x7f)
-	return humidity
-}
-
-func getBattery(b []byte) float64 {
-	return float64(b[2])
 }
 
 func Start(httpListenAddress string) {
