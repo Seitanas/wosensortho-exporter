@@ -33,7 +33,7 @@ func main() {
 
 	fmt.Printf("Found SwitchBot devices:\n")
 	for mac, data := range btle.BTDevice {
-		fmt.Printf("MAC: %s, ManufacturerData: %s ServiceData: %s\n", mac, hex.EncodeToString(data.ManufacturerData), hex.EncodeToString(data.ServiceData))
+		fmt.Printf("MAC: %s, ManufacturerData: %s ServiceData: %s Temperature: %f Humidity: %f Battery: %f\n", mac, hex.EncodeToString(data.ManufacturerData), hex.EncodeToString(data.ServiceData), data.Temperature, data.Humidity, data.Battery)
 	}
 }
 

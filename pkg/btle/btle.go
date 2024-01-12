@@ -59,5 +59,5 @@ func buildHumidity(h []byte) float64 {
 }
 
 func buildBattery(b []byte) float64 {
-	return float64(b[2])
+	return float64(b[2] & 0x7f)
 }

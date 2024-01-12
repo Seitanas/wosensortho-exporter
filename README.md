@@ -10,6 +10,6 @@ go run cmd/scanner/main.go
 Scanning for 5s...
 Done
 Found SwitchBot devices:
-MAC: 11:11:11:00:bb:aa, ManufacturerData: 690911111100bbaa920308972800 ServiceData: 7700e4
+MAC: 11:11:11:00:bb:aa, ManufacturerData: 690911111100bbaa920308972800 ServiceData: 7700e4 Temperature: 25.800000 Humidity: 33.000000 Battery: 100.000000
 ```
 Having found MAC addreses you can configure exporter service. Example config is presented in `config.json` file.
